@@ -6,11 +6,11 @@ from omegaconf import OmegaConf
 import numpy as np
 from datetime import datetime
 
-from data import load_music_utils
-from model import lstm_model
+from src.data.data import load_music_utils
+from src.models.model import lstm_model
 
 
-config = OmegaConf.load("config.yaml")
+config = OmegaConf.load("src/configs/config.yaml")
 batch_size = config['batch_size']
 activation_units = config['architecture']['n_activation_units']
 
