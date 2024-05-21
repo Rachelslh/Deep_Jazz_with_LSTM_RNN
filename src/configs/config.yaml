@@ -4,7 +4,8 @@ loss: 'categorical_crossentropy'
 log_dir: 'logs/fit/'
 architecture:
   n_classes: 84
-  n_timestep: 30
+  n_training_timestep: 30
+  n_inference_timestep: 60
   n_activation_units: 64
 
 optimizer:
