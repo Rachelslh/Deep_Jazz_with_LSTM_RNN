@@ -70,7 +70,7 @@ class lstm_model:
             outputs.append(out)
             
             # Select the next input
-            idx = tf.math.argmax(out, axis=1)
+            idx = tf.math.argmax(out, axis=-1)
             # Set "x" to be the one-hot representation of the selected value
             x = tf.one_hot([idx], self.n_classes)
             # Step 2.E: 
@@ -89,7 +89,7 @@ def predict_and_sample(inference_model, input, hidden_state0, hidden_cell0):
     
     pred = inference_model.predict([input, hidden_state0, hidden_cell0])
     # Convert "pred" into an np.array() of indices with the maximum probabilities
-    indices = np.argmax(pred, axis=1)
+    indices = np.argmax(pred, axis=-1)
     # Convert indices to one-hot vectors, the shape of the results should be (timesteps, n_classes)
     results = to_categorical(indices, num_classes=n_classes)
     
