@@ -6,10 +6,12 @@ from src.models.model import lstm_model, predict_and_sample
 from src.data.postprocess import generate_music
 
 
-config = OmegaConf.load("src/configs/config.yaml")['infer']
-batch_size = config['batch_size']
-n_classes = config['n_classes']
-activation_units = config['n_activation_units']
+config = OmegaConf.load("src/configs/config.yaml")
+inference_config = config['infer']
+
+batch_size = inference_config['batch_size']
+n_classes = inference_config['n_classes']
+activation_units = inference_config['n_activation_units']
 
 with open(config['notes_vocabulary_path'], 'rb') as fp:
     note_vocabulary = pickle.load(fp)
@@ -20,10 +22,10 @@ input0 = np.zeros((1, 1, n_classes))
 hidden_state0 = np.zeros((1, activation_units))
 hidden_cell0 = np.zeros((1, activation_units))
 
-deep_jazz_network = lstm_model(**config)
+deep_jazz_network = lstm_model(**inference_config)
 model = deep_jazz_network.init_inference_model()
 # Restore the weights
-model.load_weights(config["weights"])
+model.load_weights(inference_config["weights"])
 print(model.summary())
 
 results, indices = predict_and_sample(model, input0, hidden_state0, hidden_cell0)

@@ -5,7 +5,7 @@ train:
 
   data: data/original_metheny.mid
   log_dir: logs/fit/
-  weights_path: src/models/weights/model_weights
+  weights_dir: src/models/weights
 
   n_classes: 84
   n_timestep: 30
@@ -18,7 +18,7 @@ train:
     decay: 0.01
 
 infer:
-  weights: src/models/weights
+  weights: src/models/weights/checkpoint
 
   batch_size: 60
   n_classes: 84
