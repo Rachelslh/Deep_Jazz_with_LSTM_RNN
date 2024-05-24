@@ -3,5 +3,7 @@ logs/
 
 # Pickle files
 *.p
+# Midi files
+*.mid
 
 src/models/weights/

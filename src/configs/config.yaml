@@ -1,15 +1,29 @@
-batch_size: 60
-epochs: 500
-loss: 'categorical_crossentropy'
-log_dir: 'logs/fit/'
-architecture:
+train:
+  batch_size: 60
+  epochs: 500
+  loss: categorical_crossentropy
+
+  data: data/original_metheny.mid
+  log_dir: logs/fit/
+  weights_path: src/models/weights/model_weights
+
   n_classes: 84
-  n_training_timestep: 30
-  n_inference_timestep: 60
+  n_timestep: 30
   n_activation_units: 64
 
-optimizer:
-  learning_rate: 0.01
-  beta_1: 0.9
-  beta_2: 0.999
-  decay: 0.01
+  optimizer:
+    learning_rate: 0.01
+    beta_1: 0.9
+    beta_2: 0.999
+    decay: 0.01
+
+infer:
+  weights: src/models/weights
+
+  batch_size: 60
+  n_classes: 84
+  n_timestep: 60
+  n_activation_units: 64
+
+notes_vocabulary_path: data/notes_vocabulary.p
+chords_vocabulary_path: data/chords_vocabulary.p
