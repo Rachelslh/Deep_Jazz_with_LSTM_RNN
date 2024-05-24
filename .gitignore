@@ -1,2 +1,7 @@
 data/
 logs/
+
+# Pickle files
+*.p
+
+src/models/weights/

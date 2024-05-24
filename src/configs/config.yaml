@@ -1,5 +1,5 @@
 batch_size: 60
-epochs: 150
+epochs: 500
 loss: 'categorical_crossentropy'
 log_dir: 'logs/fit/'
 architecture:
