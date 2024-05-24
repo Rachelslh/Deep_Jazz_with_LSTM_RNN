@@ -28,6 +28,8 @@ class lstm_model:
         a0 = Input(shape=(self.n_activation_units,), name='a0')
         c0 = Input(shape=(self.n_activation_units,), name='c0')
         
+        a = a0
+        c = c0
         # Create empty list to append the outputs while you iterate
         outputs = []
         
@@ -37,7 +39,7 @@ class lstm_model:
             # Use reshaper to reshape x to be (1, n_values) (≈1 line)
             x = self.reshape_layer(x)
             # Perform one step of the LSTM_cell
-            _, a, c = self.lstm_cell(x)
+            _, a, c = self.lstm_cell(x, initial_state=[a, c])
             # Apply densor to the hidden state output of LSTM_Cell
             out = self.dense_layer(a)
             # Append the output
@@ -57,12 +59,14 @@ class lstm_model:
         a0 = Input(shape=(self.n_activation_units,), name='a0')
         c0 = Input(shape=(self.n_activation_units,), name='c0')
 
+        a = a0
+        c = c0
         # Create empty list to append the outputs while you iterate
         outputs = []
         
         for t in range(self.n_timestep):
             # Perform one step of the LSTM_cell
-            _, a, c = self.lstm_cell(x)
+            _, a, c = self.lstm_cell(x, initial_state=[a, c])
             # Apply densor to the hidden state output of LSTM_Cell
             out = self.dense_layer(a)
             # Append the output
@@ -71,7 +75,7 @@ class lstm_model:
             # Select the next input
             idx = tf.math.argmax(out, axis=-1)
             # Set "x" to be the one-hot representation of the selected value
-            x = tf.one_hot([idx], self.n_classes)
+            x = tf.one_hot(idx, self.n_classes)
             # Step 2.E: 
             # Convert x into a tensor with shape=(None, 1, n_classes)
             x = RepeatVector(1)(x)
