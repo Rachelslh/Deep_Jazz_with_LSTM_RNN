@@ -7,9 +7,10 @@ train:
   log_dir: logs/fit/
   weights_dir: src/models/weights
 
-  n_classes: 84
-  n_timestep: 30
-  n_activation_units: 64
+  model:
+    n_classes: 84
+    n_timestep: 30
+    n_activation_units: 64
 
   optimizer:
     learning_rate: 0.01
@@ -19,11 +20,12 @@ train:
 
 infer:
   weights: src/models/weights/checkpoint
-
   batch_size: 60
-  n_classes: 84
-  n_timestep: 60
-  n_activation_units: 64
+
+  model:
+    n_classes: 84
+    n_timestep: 60
+    n_activation_units: 64
 
 notes_vocabulary_path: data/notes_vocabulary.p
 chords_vocabulary_path: data/chords_vocabulary.p

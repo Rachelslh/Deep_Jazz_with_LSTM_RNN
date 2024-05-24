@@ -10,8 +10,8 @@ config = OmegaConf.load("src/configs/config.yaml")
 inference_config = config['infer']
 
 batch_size = inference_config['batch_size']
-n_classes = inference_config['n_classes']
-activation_units = inference_config['n_activation_units']
+n_classes = inference_config['model']['n_classes']
+activation_units = inference_config['model']['n_activation_units']
 
 with open(config['notes_vocabulary_path'], 'rb') as fp:
     note_vocabulary = pickle.load(fp)
@@ -22,7 +22,7 @@ input0 = np.zeros((1, 1, n_classes))
 hidden_state0 = np.zeros((1, activation_units))
 hidden_cell0 = np.zeros((1, activation_units))
 
-deep_jazz_network = lstm_model(**inference_config)
+deep_jazz_network = lstm_model(**inference_config['model'])
 model = deep_jazz_network.init_inference_model()
 # Restore the weights
 model.load_weights(inference_config["weights"])
