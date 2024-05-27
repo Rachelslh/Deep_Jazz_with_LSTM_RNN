@@ -1,21 +1,31 @@
+data:
+  midi_path: data/original_metheny.mid
+  offsets:
+    - [104, 140]
+    - [476, 548]
+    - [640, 668]
+    - [712, 864]
+  sequences_per_offset_interval:
+    - 100
+    - 120
+    - 50
+    - 200
+
 train:
-  batch_size: 60
+  batch_size: 20
   epochs: 500
   loss: categorical_crossentropy
 
-  data: data/original_metheny.mid
   log_dir: logs/fit/
   weights_dir: src/models/weights
 
   model:
-    n_classes: 84
+    n_classes: 118
     n_timestep: 30
     n_activation_units: 64
 
   optimizer:
     learning_rate: 0.01
-    beta_1: 0.9
-    beta_2: 0.999
     decay: 0.01
 
 infer:
@@ -23,7 +33,7 @@ infer:
   batch_size: 60
 
   model:
-    n_classes: 84
+    n_classes: 118
     n_timestep: 60
     n_activation_units: 64
 

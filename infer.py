@@ -28,6 +28,7 @@ model = deep_jazz_network.init_inference_model()
 model.load_weights(inference_config["weights"])
 print(model.summary())
 
+# Testing
 results, indices = predict_and_sample(model, input0, hidden_state0, hidden_cell0)
 
 print("np.argmax(results[12]) =", np.argmax(results[12]))

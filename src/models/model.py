@@ -1,5 +1,6 @@
 import tensorflow as tf
 import numpy as np
+import random
 
 from tensorflow.keras.layers import Reshape, LSTM, Dense, Input, RepeatVector
 from tensorflow.keras.models import Model
@@ -13,6 +14,8 @@ class lstm_model:
         self.n_activation_units = n_activation_units
         
         self.init_layers()
+        
+        random.seed(0)
 
     def init_layers(self, ):
         self.reshape_layer = Reshape((1, self.n_classes))
@@ -39,7 +42,7 @@ class lstm_model:
             # Use reshaper to reshape x to be (1, n_values) (≈1 line)
             x = self.reshape_layer(x)
             # Perform one step of the LSTM_cell
-            _, a, c = self.lstm_cell(x, initial_state=[a, c])
+            a, _, c = self.lstm_cell(x, initial_state=[a, c])
             # Apply densor to the hidden state output of LSTM_Cell
             out = self.dense_layer(a)
             # Append the output
