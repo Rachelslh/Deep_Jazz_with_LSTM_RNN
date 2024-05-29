@@ -7,7 +7,7 @@ from datetime import datetime
 import pickle
 import matplotlib.pyplot as plt
 
-from src.data.data import load_music_utils
+from src.data_processing.data import load_music_utils
 from src.models.model import lstm_model
 
 

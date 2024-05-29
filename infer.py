@@ -3,7 +3,7 @@ import numpy as np
 import pickle
 
 from src.models.model import lstm_model, predict_and_sample
-from src.data.postprocess import generate_music
+from src.data_processing.postprocess import generate_music
 
 
 config = OmegaConf.load("src/configs/config.yaml")
