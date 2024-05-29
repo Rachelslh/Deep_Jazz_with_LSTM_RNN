@@ -62,7 +62,7 @@ The dataset consists of MIDI files containing jazz solos. The preprocessing scri
 ## Model
 The model is based on an LSTM RNN architecture, which is well-suited for sequence generation tasks. The key components of the model are:
 
-- **Input Layer**: Takes the processed MIDI data.
+- **Input Layer**: Takes the processed MIDI data i.e. music grammar.
 - **LSTM Layers**: Single-layer, captures temporal dependencies in the music.
 - **Dense Layer**: Outputs the probabilities for the next note in the sequence using a Softmax activation function.
 
