@@ -1,0 +1,15 @@
+jsonpickle==3.0.4
+keras==2.15.0
+matplotlib==3.7.1
+matplotlib-inline==0.1.6
+music21==8.3.0
+numpy==1.23.5
+opencv-python==4.5.5.64
+pickleshare==0.7.5
+Pillow==9.4.0
+PyYAML==6.00
+tensorboard==2.15.1
+tensorboard-data-server==0.7.2
+tensorflow==2.15.0
+tensorflow-macos==2.15.0
+tensorflow-metal==1.1.0

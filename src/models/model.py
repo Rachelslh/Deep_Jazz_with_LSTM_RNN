@@ -19,7 +19,9 @@ class lstm_model:
 
     def init_layers(self, ):
         self.reshape_layer = Reshape((1, self.n_classes))
-        self.lstm_cell = LSTM(self.n_activation_units, return_state = True)
+        self.lstm_cell_l1 = LSTM(self.n_activation_units, return_sequences=True, return_state = True)
+        #self.lstm_cell_l2 = LSTM(self.n_activation_units, return_sequences=True, return_state = True)
+        #self.lstm_cell_l3 = LSTM(self.n_activation_units, return_state = True)
         self.dense_layer = Dense(self.n_classes, activation='softmax')
         
         
@@ -42,7 +44,9 @@ class lstm_model:
             # Use reshaper to reshape x to be (1, n_values) (≈1 line)
             x = self.reshape_layer(x)
             # Perform one step of the LSTM_cell
-            a, _, c = self.lstm_cell(x, initial_state=[a, c])
+            sequence_out, a, c = self.lstm_cell_l1(x, initial_state=[a, c])
+            #sequence_out, a, c = self.lstm_cell_l2(sequence_out, initial_state=[a, c])
+            #_, a, c = self.lstm_cell_l3(sequence_out, initial_state=[a, c])
             # Apply densor to the hidden state output of LSTM_Cell
             out = self.dense_layer(a)
             # Append the output

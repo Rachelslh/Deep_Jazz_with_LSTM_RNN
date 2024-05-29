@@ -32,17 +32,17 @@ deep_jazz_network = lstm_model(**training_config['model'])
 model = deep_jazz_network.init_training_model()
 print(model.summary())
 
-opt = SGD(**training_config['optimizer'])
+opt = Adam(**training_config['optimizer'])
 
 tensorboard_callback = TensorBoard(log_dir=log_dir, histogram_freq=1)
-earlystopping_cp = EarlyStopping(monitor='loss', patience=10, restore_best_weights=True)
+earlystopping_cp = EarlyStopping(monitor='loss', patience=100, restore_best_weights=True)
 
 model.compile(optimizer=opt, loss=training_config['loss'], metrics=['accuracy'])
 
 history = model.fit([X, a0, c0], list(Y), epochs=training_config['epochs'], batch_size=batch_size, callbacks=[tensorboard_callback])
 
 print(f"loss at epoch 1: {history.history['loss'][0]}")
-print(f"loss at epoch 100: {history.history['loss'][training_config['epochs'] - 1]}")
+print(f"loss at last epoch: {history.history['loss'][training_config['epochs'] - 1]}")
 
 # Save model vocabulary and weights
 with open(config['notes_vocabulary_path'], 'wb') as fp:

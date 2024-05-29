@@ -6,23 +6,28 @@ data:
     - [640, 668]
     - [712, 864]
   sequences_per_offset_interval:
-    - 100
-    - 120
-    - 50
-    - 200
+    #- 40
+    #- 60
+    #- 30
+    #- 100
+
+    - 20
+    - 10
+    - 10
+    - 30
 
 train:
-  batch_size: 20
-  epochs: 500
+  batch_size: 1
+  epochs: 100
   loss: categorical_crossentropy
 
   log_dir: logs/fit/
-  weights_dir: src/models/weights
+  weights_dir: src/models/1layer_weights/
 
   model:
     n_classes: 118
     n_timestep: 30
-    n_activation_units: 64
+    n_activation_units: 128
 
   optimizer:
     learning_rate: 0.01
