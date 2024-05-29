@@ -49,7 +49,7 @@ To train the model and generate jazz solos, follow these steps:
 
 ## Data
 The dataset consists of MIDI files containing jazz solos. The preprocessing script converts these files into a format suitable for training the LSTM model following these steps:
-- Restore zero lengths to at least 0.25 beats: Due to quantization applied during the conversion process to MIDI files, some tone lengths may be zeroed-out.
+- Restore zero lengths to at least 0.25 beats (1/4 beat): Due to quantization applied during the conversion process to MIDI files, some tone lengths may be zeroed-out.
 - Transposition: Change the key signature to adhere to major keys.
 - For each offset interval specified in the configuration:
 - Extract tones from the acoustic guitar part.
