@@ -50,7 +50,7 @@ def parse_melody(fullMeasureNotes, fullMeasureChords):
 
     # Information for the start of the measure.
     # 1) measureStartTime: the offset for measure's start, e.g. 476.0.
-    # 2) measureStartOffset: how long from the measure start to the first element.
+    # 2) measureStartOffset: how long from the measure start to the first element.§
     measureStartTime = measures[0].offset - (measures[0].offset % 4)
     measureStartOffset  = measures[0].offset - measureStartTime
 

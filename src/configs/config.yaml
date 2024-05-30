@@ -13,24 +13,24 @@ data:
 
 train:
   batch_size: 1
-  epochs: 100
+  epochs: 150
   loss: categorical_crossentropy
 
   log_dir: logs/fit/
-  weights_dir: src/models/1layer_weights/
+  weights_dir: src/models/weights/singleLstmLayer_64activations_70samples_1batchSize_fixLastDenseLayer/
 
   model:
     n_classes: 118
     n_timestep: 30
-    n_activation_units: 128
+    n_activation_units: 64
 
   optimizer:
     learning_rate: 0.01
     decay: 0.01
 
 infer:
-  weights: src/models/weights/checkpoint
-  batch_size: 60
+  weights: src/models/weights/singleLstmLayer_64activations_70samples_1batchSize/checkpoint
+  batch_size: 1
 
   model:
     n_classes: 118

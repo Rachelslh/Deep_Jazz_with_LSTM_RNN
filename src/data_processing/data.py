@@ -18,7 +18,9 @@ def data_processing(data, num_tones, values_indices, m, Tx):
             if j != 0:
                 X[i, j, idx] = 1
                 Y[i, j-1, idx] = 1
-    
+            if j == Tx - 1:
+                Y[i, j, idx] = 1
+                
     Y = np.swapaxes(Y, 0, 1)
     Y = Y.tolist()
     return np.asarray(X), np.asarray(Y)

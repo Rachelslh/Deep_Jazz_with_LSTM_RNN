@@ -18,9 +18,9 @@ with open(config['notes_vocabulary_path'], 'rb') as fp:
 with open(config['chords_vocabulary_path'], 'rb') as fp:
     chords = pickle.load(fp)
     
-input0 = np.zeros((1, 1, n_classes))
-hidden_state0 = np.zeros((1, activation_units))
-hidden_cell0 = np.zeros((1, activation_units))
+input0 = np.zeros((batch_size, 1, n_classes))
+hidden_state0 = np.zeros((batch_size, activation_units))
+hidden_cell0 = np.zeros((batch_size, activation_units))
 
 deep_jazz_network = lstm_model(**inference_config['model'])
 model = deep_jazz_network.init_inference_model()

@@ -1,5 +1,6 @@
 from tensorflow.keras.optimizers.legacy import Adam, SGD
 from tensorflow.keras.callbacks import TensorBoard, EarlyStopping
+import json
 
 from omegaconf import OmegaConf
 import numpy as np
@@ -35,14 +36,12 @@ print(model.summary())
 opt = Adam(**training_config['optimizer'])
 
 tensorboard_callback = TensorBoard(log_dir=log_dir, histogram_freq=1)
-earlystopping_cp = EarlyStopping(monitor='loss', patience=100, restore_best_weights=True)
+earlystopping_cp = EarlyStopping(monitor='loss', patience=50, restore_best_weights=True)
 
 model.compile(optimizer=opt, loss=training_config['loss'], metrics=['accuracy'])
 
-history = model.fit([X, a0, c0], list(Y), epochs=training_config['epochs'], batch_size=batch_size, callbacks=[tensorboard_callback])
-
-print(f"loss at epoch 1: {history.history['loss'][0]}")
-print(f"loss at last epoch: {history.history['loss'][training_config['epochs'] - 1]}")
+history = model.fit([X, a0, c0], list(Y), epochs=training_config['epochs'], batch_size=batch_size, callbacks=[tensorboard_callback, earlystopping_cp])
+json.dump(history.history, open("src/models/history.json", 'w'))
 
 # Save model vocabulary and weights
 with open(config['notes_vocabulary_path'], 'wb') as fp:
