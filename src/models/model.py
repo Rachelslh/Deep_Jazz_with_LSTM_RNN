@@ -59,7 +59,7 @@ class lstm_model:
     def init_inference_model(self, ):
         
         # Define the input of your model with a shape 
-        x = Input(shape=(1, self.n_classes))
+        x0 = Input(shape=(1, self.n_classes))
         
         # Define s0, initial hidden state for the decoder LSTM
         a0 = Input(shape=(self.n_activation_units,), name='a0')
@@ -67,6 +67,7 @@ class lstm_model:
 
         a = a0
         c = c0
+        x=x0
         # Create empty list to append the outputs while you iterate
         outputs = []
         
@@ -87,7 +88,7 @@ class lstm_model:
             x = RepeatVector(1)(x)
         
         # Create model instance
-        model = Model(inputs=[x, a0, c0], outputs=outputs)
+        model = Model(inputs=[x0, a0, c0], outputs=outputs)
         
         return model
     

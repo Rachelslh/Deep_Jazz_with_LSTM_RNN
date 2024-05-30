@@ -30,7 +30,7 @@ def load_music_utils(midi_path, offsets, sequences_per_offset_interval, n_timest
     chords_unified, abstract_grammars_unified = [], []
     for offset in offsets:
         chords, abstract_grammars = get_musical_data(midi_path, offset)
-        chords_unified.extend(chords)
+        chords_unified.extend(chords.values())
         abstract_grammars_unified.append(abstract_grammars)
         
     X, Y = [], []

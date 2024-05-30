@@ -5,7 +5,7 @@ from ..models.model import predict_and_sample
 from .grammar import unparse_grammar
 
 
-def generate_music(inference_model, indices_tones, chords, diversity = 0.5):
+def generate_music(inference_model, input0, hidden_state0, hidden_cell0, indices_tones, chords, diversity = 0.5):
     
     # set up audio stream
     out_stream = stream.Stream()
@@ -27,7 +27,7 @@ def generate_music(inference_model, indices_tones, chords, diversity = 0.5):
             curr_chords.insert((j.offset % 4), j)
         
         # Generate a sequence of tones using the model
-        _, indices = predict_and_sample(inference_model)
+        _, indices = predict_and_sample(inference_model, input0, hidden_state0, hidden_cell0)
         indices = list(indices.squeeze())
         pred = [indices_tones[p] for p in indices]
         

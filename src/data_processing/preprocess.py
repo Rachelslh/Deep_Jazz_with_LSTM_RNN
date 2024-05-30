@@ -87,6 +87,10 @@ def __parse_midi(data_fn, offset):
     chordStream = solo_stream[0]
     chordStream.removeByClass('Rest')
     chordStream.removeByClass('Note')
+    chordStream.removeByClass('Key')
+    chordStream.removeByClass('Instrument')
+    chordStream.removeByClass('MetronomeMark')
+    chordStream.removeByClass('TimeSignature')
     offsetTuples_chords = [(int(n.offset / 4), n) for n in chordStream]
 
     # Generate the chord structure. Use just track 1 (piano) since it is

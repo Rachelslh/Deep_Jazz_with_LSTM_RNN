@@ -29,7 +29,7 @@ train:
     decay: 0.01
 
 infer:
-  weights: src/models/weights/singleLstmLayer_64activations_70samples_1batchSize/checkpoint
+  weights: src/models/weights/singleLstmLayer_64activations_70samples_1batchSize/
   batch_size: 1
 
   model:
