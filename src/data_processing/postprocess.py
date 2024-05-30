@@ -1,11 +1,11 @@
 from music21 import *
-from random import random
-
+import random 
+from itertools import zip_longest
 from ..models.model import predict_and_sample
 from .grammar import unparse_grammar
 
 
-def generate_music(inference_model, input0, hidden_state0, hidden_cell0, indices_tones, chords, diversity = 0.5):
+def generate_music(inference_model, input0, hidden_state0, hidden_cell0, indices_tones, chords, output_path):
     
     # set up audio stream
     out_stream = stream.Stream()
@@ -69,7 +69,7 @@ def generate_music(inference_model, input0, hidden_state0, hidden_cell0, indices
 
     # Save audio stream to fine
     mf = midi.translate.streamToMidiFile(out_stream)
-    mf.open("output/my_music.midi", 'wb')
+    mf.open(output_path, 'wb')
     mf.write()
     print("Your generated music is saved in output/my_music.midi")
     mf.close()
@@ -114,6 +114,13 @@ def __roundUpDown(num, mult, upDown):
     else:
         return __roundUp(num, mult)
     
+
+''' Helper function, from recipes, to iterate over list in chunks of n 
+    length. '''
+def __grouper(iterable, n, fillvalue=None):
+    args = [iter(iterable)] * n
+    return zip_longest(*args, fillvalue=fillvalue)
+
 
 ''' Remove repeated notes, and notes that are too close together. '''
 def prune_notes(curr_notes):

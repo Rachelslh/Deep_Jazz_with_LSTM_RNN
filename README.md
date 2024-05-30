@@ -1,38 +1,9 @@
 # Generate Jazz Solo with LSTM RNN
 
-This repository contains code for generating jazz solos using Long Short-Term Memory (LSTM) Recurrent Neural Networks (RNN).
-
-## Table of Contents
-- [Introduction](#introduction)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Data](#data)
-- [Model](#model)
-- [Results](#results)
-- [Contributing](#contributing)
+This repository contains code for generating jazz solos using Long Short-Term Memory (LSTM) Recurrent Neural Networks (RNN). Data processing code is borrowed from Coursera's [sequence models course](https://www.coursera.org/learn/nlp-sequence-models).
 
 ## Introduction
 This project aims to generate jazz solos using a neural network model based on LSTM RNN. The model is trained on MIDI files of jazz music and generates new sequences that mimic the style of the training data.
-
-## Installation
-To get started with the project, follow these steps:
-
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/Rachelslh/Jazz-Solo-with-LSTM-RNN.git
-    cd Jazz-Solo-with-LSTM-RNN
-    ```
-
-2. Create and activate a virtual environment (optional but recommended):
-    ```sh
-    python -m venv venv
-    source venv/bin/activate   # On Windows use `venv\Scripts\activate`
-    ```
-
-3. Install the required dependencies:
-    ```sh
-    pip install -r requirements.txt
-    ```
 
 ## Usage
 To train the model and generate jazz solos, follow these steps:
@@ -67,9 +38,5 @@ The model is based on an LSTM RNN architecture, which is well-suited for sequenc
 - **Dense Layer**: Outputs the probabilities for the next note in the sequence using a Softmax activation function.
 
 ## Results
-After training, the model generates jazz solos that are stylistically similar to the training data. Here are some sample results:
+After training, the model generates jazz solos that are stylistically similar to the training data using the chords of the training data for post-processing. Consequently, the resulting novel sequnces sound very similar to the training data which proves that this is not the best approach to creqte new music sequences. You can check a sample from the model results under the Output folder.
 
-- Sample (to be generated)
-
-## Contributing
-Contributions are welcome! Please open an issue or submit a pull request if you have any improvements or bug fixes.

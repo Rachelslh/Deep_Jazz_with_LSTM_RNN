@@ -17,7 +17,7 @@ train:
   loss: categorical_crossentropy
 
   log_dir: logs/fit/
-  weights_dir: src/models/weights/singleLstmLayer_64activations_70samples_1batchSize_fixLastDenseLayer/
+  weights_dir: src/models/weights/singleLstmLayer_64activations_70samples_1batchSize_fixLastDenseLayer_bestEpoch/
 
   model:
     n_classes: 118
@@ -29,8 +29,9 @@ train:
     decay: 0.01
 
 infer:
-  weights: src/models/weights/singleLstmLayer_64activations_70samples_1batchSize/
+  weights: src/models/weights/singleLstmLayer_64activations_70samples_1batchSize_bestEpoch/
   batch_size: 1
+  output_path: output/sequence.midi
 
   model:
     n_classes: 118

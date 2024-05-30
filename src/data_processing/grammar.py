@@ -1,6 +1,6 @@
 import copy
 from music21 import *
-from random import random
+import random
 
 
 ''' Helper function to determine if a note is a scale tone. '''
@@ -38,6 +38,40 @@ def __is_approach_tone(chord, note):
             note.name == stepUp.getEnharmonic().name):
                 return True
     return False
+
+
+''' Helper function to generate a chord tone. '''
+def __generate_chord_tone(lastChord):
+    lastChordNoteNames = [p.nameWithOctave for p in lastChord.pitches]
+    return note.Note(random.choice(lastChordNoteNames))
+
+
+''' Helper function to generate a scale tone. '''
+def __generate_scale_tone(lastChord):
+    # Derive major or minor scales (minor if 'other') based on the quality
+    # of the lastChord.
+    scaleType = scale.WeightedHexatonicBlues() # minor pentatonic
+    if lastChord.quality == 'major':
+        scaleType = scale.MajorScale()
+    # Can change later to deriveAll() for flexibility. If so then use list
+    # comprehension of form [x for a in b for x in a].
+    scales = scaleType.derive(lastChord) # use deriveAll() later for flexibility
+    allPitches = list(set([pitch for pitch in scales.getPitches()]))
+    allNoteNames = [i.name for i in allPitches] # octaves don't matter
+
+    # Return a note (no octave here) in a scale that matches the lastChord.
+    sNoteName = random.choice(allNoteNames)
+    lastChordSort = lastChord.sortAscending()
+    sNoteOctave = random.choice([i.octave for i in lastChordSort.pitches])
+    sNote = note.Note(("%s%s" % (sNoteName, sNoteOctave)))
+    return sNote
+
+
+''' Helper function to generate an approach tone. '''
+def __generate_approach_tone(lastChord):
+    sNote = __generate_scale_tone(lastChord)
+    aNote = sNote.transpose(random.choice([1, -1]))
+    return aNote
 
 
 def parse_melody(fullMeasureNotes, fullMeasureChords):

@@ -35,6 +35,4 @@ print("np.argmax(results[12]) =", np.argmax(results[12]))
 print("np.argmax(results[17]) =", np.argmax(results[17]))
 print("list(indices[12:18]) =", list(indices[12:18]))
 
-out_stream = generate_music(model, input0, hidden_state0, hidden_cell0, note_vocabulary, chords)
-
-#TODO convert to mp3 and store
+generate_music(model, input0, hidden_state0, hidden_cell0, note_vocabulary, chords, inference_config['output_path'])
